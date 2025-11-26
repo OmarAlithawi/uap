@@ -2521,6 +2521,14 @@ export default function UAPDocumentationApp() {
                   </div>
                 </div>
               </div>
+              
+              <div className="mb-8">
+            <img 
+              src="/scoring.png" 
+              alt="Multi-tenant Gamification Service Architecture Diagram showing the central hub, connected platforms, and data flow." 
+              className="w-full h-auto rounded-lg shadow-xl border border-gray-200"
+            />
+          </div> 
         
               {/* SCOPE / PROBLEM / STAKEHOLDERS / KPIs */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
