@@ -8,6 +8,7 @@ import {
   Zap,
   Activity,
   AlertTriangle,
+  AlertCircle,
   CheckCircle,
   User,
   Layers,
@@ -42,6 +43,9 @@ import {
   LayoutTemplate,
   Network,     
   Shield, 
+  Building2,
+  School,
+  Map
 } from 'lucide-react';
 
 /**
@@ -1735,58 +1739,1332 @@ export default function UAPDocumentationApp() {
         
       case 'hierarchy':
         return (
-            <>
-            <DocSection title="PRD-3: Hierarchy & Roles" icon={<Building />}>
-               <p>UAP maps to the physical ministry structure (Ministry &rarr; Directorate &rarr; University &rarr; College &rarr; Dept). User permissions are tied to these nodes.</p>
-               <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 mt-4">
-                 <h4 className="font-bold text-slate-700 mb-2">Key Roles</h4>
-                 <div className="space-y-2 text-sm">
-                   <div className="flex justify-between border-b pb-1"><span>Ministry Admin</span> <span className="text-slate-500">Global Governance</span></div>
-                   <div className="flex justify-between border-b pb-1"><span>Directorate Admin</span> <span className="text-slate-500">Award Creator</span></div>
-                   <div className="flex justify-between border-b pb-1"><span>Pre-Reviewer</span> <span className="text-slate-500">University Validation</span></div>
-                   <div className="flex justify-between"><span>Evaluator</span> <span className="text-slate-500">Scoring Only</span></div>
-                 </div>
-               </div>
-            </DocSection>
-           </>
+          <>
+          {/* PRD-3 HERO / EXEC SUMMARY */}
+          <DocSection title="PRD-3: Hierarchy & User Role Management" icon={<Network />}>
+            <div className="space-y-8">
+              {/* Hero */}
+              <div className="rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-700 to-sky-700 text-white p-6 shadow-2xl shadow-indigo-200/40">
+                <div className="flex flex-col gap-6">
+                  <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div className="space-y-2 max-w-2xl">
+                      <p className="text-[11px] uppercase tracking-[0.4em] text-white/70 flex items-center gap-2">
+                        <span className="flex items-center gap-1">
+                          <Network size={16} />
+                          PRD-3 • Hierarchy & Roles
+                        </span>
+                      </p>
+                      <h2 className="text-2xl md:text-3xl font-black tracking-tight">
+                        One Hierarchy to Control Access, Routing & Visibility
+                      </h2>
+                      <p className="text-sm md:text-base text-indigo-100">
+                        PRD-3 defines the <strong>organizational hierarchy, user roles, visibility rules,
+                        and routing logic</strong> that govern everything in the Unified Awarding Platform
+                        (UAP): who can see what, who can edit, and where submissions are routed.
+                      </p>
+                    </div>
+        
+                    <div className="flex flex-wrap gap-3 justify-end min-w-[220px]">
+                      <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl px-4 py-3 min-w-[120px]">
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-white/70">
+                          Hierarchy Levels
+                        </p>
+                        <p className="text-2xl font-bold mt-1">4</p>
+                        <p className="text-[11px] text-white/70 mt-1">
+                          Ministry → Directorate → University → Sub-unit
+                        </p>
+                      </div>
+                      <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl px-4 py-3 min-w-[120px]">
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-white/70">
+                          Core Dimension
+                        </p>
+                        <p className="text-sm font-semibold mt-1">Roles & Access</p>
+                        <p className="text-[11px] text-white/70 mt-1">
+                          Visibility • Routing • Edit rights
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div className="flex flex-wrap gap-2 text-[11px]">
+                    <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                      Single UAP hierarchy model
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                      Role-based access control
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                      Award & submission visibility rules
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                      Pre-review & evaluation routing
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="mb-8">
+            <img 
+              src="/hierarchy.png" 
+              alt="Multi-tenant Gamification Service Architecture Diagram showing the central hub, connected platforms, and data flow." 
+              className="w-full h-auto rounded-lg shadow-xl border border-gray-200"
+            />
+          </div>
+        
+              {/* Scope / Problem / KPIs / Stakeholders */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Product Scope & Vision
+                  </p>
+                  <p className="text-sm text-slate-700 mt-2">
+                    Define a <strong>unified, consistent framework</strong> for hierarchy, roles,
+                    permissions and routing. UAP should always know which node a user belongs to,
+                    what they can see, and which path each submission should follow.
+                  </p>
+                </div>
+        
+                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Problem Statement
+                  </p>
+                  <p className="text-sm text-slate-700 mt-2">
+                    Previous systems had <strong>ambiguous roles and inconsistent visibility</strong>.
+                    Awards and submissions could be accessed by the wrong actors, and routing between
+                    directorates, universities and evaluators was not standardized.
+                  </p>
+                </div>
+        
+                <div className="bg-slate-50 rounded-2xl border border-slate-200 shadow-sm p-4">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Success Metrics / KPIs
+                  </p>
+                  <ul className="mt-2 text-sm text-slate-700 space-y-1">
+                    <li>✅ 0 unauthorized access incidents.</li>
+                    <li>✅ 100% correct pre-review & evaluation routing based on hierarchy.</li>
+                    <li>✅ 50% reduction in role/access related support tickets.</li>
+                    <li>✅ Full audit trail for all hierarchy and role changes.</li>
+                  </ul>
+                </div>
+        
+                <div className="bg-slate-50 rounded-2xl border border-slate-200 shadow-sm p-4">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Stakeholder Map
+                  </p>
+                  <ul className="mt-2 text-sm text-slate-700 space-y-1">
+                    <li>
+                      <span className="font-semibold">Ministry Super Admin:</span> Owns hierarchy and role
+                      framework; approves structural changes.
+                    </li>
+                    <li>
+                      <span className="font-semibold">Directorate Admins:</span> Manage awards, committees
+                      and evaluators within their directorate.
+                    </li>
+                    <li>
+                      <span className="font-semibold">Universities / Sub-units:</span> Perform pre-review
+                      and institutional oversight on their own submissions.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </DocSection>
+        
+          {/* Personas & Journeys */}
+          <DocSection title="Personas & Access Journeys" icon={<User />}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                  Key Personas
+                </p>
+                <ul className="list-disc pl-5 space-y-2 mt-3 text-sm text-slate-700">
+                  <li>
+                    <strong>Ministry Super Admin:</strong> Maintains the full hierarchy and assigns roles
+                    across all directorates and institutions.
+                  </li>
+                  <li>
+                    <strong>Directorate Admin:</strong> Manages awards, committees and evaluator accounts
+                    within a single directorate.
+                  </li>
+                  <li>
+                    <strong>Award Creator / Approver:</strong> Configure awards and approve configurations,
+                    but do not change hierarchy.
+                  </li>
+                  <li>
+                    <strong>Pre-Reviewer / Verification Admin:</strong> Handle institutional pre-review and
+                    ministry-level verification.
+                  </li>
+                  <li>
+                    <strong>Committee Member / Evaluator:</strong> Score only the submissions assigned to
+                    them.
+                  </li>
+                  <li>
+                    <strong>Applicant:</strong> Creates and tracks their own applications.
+                  </li>
+                </ul>
+              </div>
+        
+              <div className="bg-slate-900 rounded-2xl border border-slate-800 text-slate-100 p-5">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-400">
+                  Access Journeys
+                </p>
+                <div className="mt-3 space-y-3 text-sm">
+                  <div>
+                    <p className="font-semibold text-slate-50 mb-1">Journey A – Pre-Review Routing</p>
+                    <p className="text-slate-300 text-xs">
+                      Applicant submits → UAP resolves university &amp; sub-unit → submission appears only
+                      in the queue of the correct institutional pre-reviewer.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-50 mb-1">Journey B – Evaluation Routing</p>
+                    <p className="text-slate-300 text-xs">
+                      Award configuration defines evaluation model → specialization field maps each
+                      submission to committees → evaluators see only assigned workloads.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-slate-50 mb-1">Journey C – Visibility Control</p>
+                    <p className="text-slate-300 text-xs">
+                      Applicants see only their own submissions; pre-reviewers see their institution;
+                      directorate admins see all submissions under their awards.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </DocSection>
+        
+          {/* Hierarchy Model */}
+          <DocSection title="Organizational Hierarchy Model (V1)" icon={<Layers />}>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+              <div className="bg-slate-900 text-slate-100 rounded-2xl border border-slate-800 p-4 flex flex-col gap-2">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Level 1</p>
+                <p className="font-semibold flex items-center gap-2">
+                  <Shield size={16} /> Ministry
+                </p>
+                <p className="text-xs text-slate-300">
+                  Top-level governance. Owns the global hierarchy, role catalogue, and cross-directorate
+                  standards.
+                </p>
+              </div>
+              <div className="bg-slate-900 text-slate-100 rounded-2xl border border-slate-800 p-4 flex flex-col gap-2">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Level 2</p>
+                <p className="font-semibold flex items-center gap-2">
+                  <Building2 size={16} /> Directorate
+                </p>
+                <p className="text-xs text-slate-300">
+                  Owns awards, committees and evaluators within a specific directorate.
+                </p>
+              </div>
+              <div className="bg-slate-900 text-slate-100 rounded-2xl border border-slate-800 p-4 flex flex-col gap-2">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Level 3</p>
+                <p className="font-semibold flex items-center gap-2">
+                  <School size={16} /> University
+                </p>
+                <p className="text-xs text-slate-300">
+                  Performs pre-review and manages institutional submissions and reviewers.
+                </p>
+              </div>
+              <div className="bg-slate-900 text-slate-100 rounded-2xl border border-slate-800 p-4 flex flex-col gap-2">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-400">Level 4</p>
+                <p className="font-semibold flex items-center gap-2">
+                  <Layers size={16} /> Sub-Units
+                </p>
+                <p className="text-xs text-slate-300">
+                  Colleges, departments, labs, centres, libraries etc. used for fine-grained routing and
+                  visibility.
+                </p>
+              </div>
+            </div>
+          </DocSection>
+        
+          {/* Roles & Capabilities */}
+          <DocSection title="Roles & Capabilities" icon={<User />}>
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 text-sm">
+              <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500 mb-3">
+                Role Catalogue (V1)
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {[
+                  {
+                    role: 'Ministry Super Admin',
+                    desc: 'Manage full hierarchy; assign any role; full audit visibility.',
+                  },
+                  {
+                    role: 'Directorate Admin',
+                    desc: 'Manage awards, evaluators and committees for their directorate.',
+                  },
+                  {
+                    role: 'Award Creator',
+                    desc: 'Create awards via the configuration wizard; cannot approve own awards.',
+                  },
+                  {
+                    role: 'Award Approver',
+                    desc: 'Approve/reject award configurations before they become Active.',
+                  },
+                  {
+                    role: 'Pre-Reviewer',
+                    desc: 'Review submissions belonging to their university or sub-unit.',
+                  },
+                  {
+                    role: 'Verification Admin',
+                    desc: 'Handle escalations, unlock limited fields and correct minor issues.',
+                  },
+                  {
+                    role: 'Committee Member / Evaluator',
+                    desc: 'Score only the submissions assigned to them; no edit to other data.',
+                  },
+                  {
+                    role: 'Committee Manager',
+                    desc: 'Manage evaluators, committee membership and mappings to awards.',
+                  },
+                  {
+                    role: 'Applicant',
+                    desc: 'Create, edit (until submission) and submit applications.',
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.role}
+                    className="rounded-xl border border-slate-100 bg-slate-50 px-3 py-3 flex flex-col gap-1"
+                  >
+                    <p className="font-semibold text-slate-900 text-sm">{item.role}</p>
+                    <p className="text-xs text-slate-600">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </DocSection>
+        
+          {/* Visibility & Edit Permissions */}
+          <DocSection title="Visibility & Edit Rules" icon={<Shield />}>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 text-sm">
+              {/* Award-level visibility */}
+              <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500 mb-2">
+                  Award-Level Visibility
+                </p>
+                <ul className="space-y-1 text-slate-700">
+                  <li>
+                    <strong>Directorate Admins:</strong> Awards within their directorate.
+                  </li>
+                  <li>
+                    <strong>University Users:</strong> Awards open to their institution or public awards.
+                  </li>
+                  <li>
+                    <strong>Applicants:</strong> Awards they are eligible for based on PRD-2 rules.
+                  </li>
+                </ul>
+              </div>
+        
+              {/* Submission-level visibility */}
+              <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500 mb-2">
+                  Submission-Level Visibility
+                </p>
+                <ul className="space-y-1 text-slate-700">
+                  <li>
+                    <strong>Applicants:</strong> Only their own submissions.
+                  </li>
+                  <li>
+                    <strong>Pre-Reviewers:</strong> Submissions from their university/sub-unit.
+                  </li>
+                  <li>
+                    <strong>Verification Admins:</strong> Escalated submissions only.
+                  </li>
+                  <li>
+                    <strong>Evaluators:</strong> Submissions explicitly assigned to them.
+                  </li>
+                  <li>
+                    <strong>Directorate Admins:</strong> All submissions under their awards.
+                  </li>
+                </ul>
+              </div>
+        
+              {/* Edit permissions */}
+              <div className="bg-slate-900 rounded-2xl border border-slate-800 text-slate-100 p-4">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-400 mb-2">
+                  Edit Permissions
+                </p>
+                <ul className="space-y-1 text-xs">
+                  <li>
+                    <strong>Applicants:</strong> Draft or explicitly unlocked fields only.
+                  </li>
+                  <li>
+                    <strong>Pre-Reviewers / Evaluators:</strong> No direct edit rights on applicant data;
+                    they only review/score.
+                  </li>
+                  <li>
+                    <strong>Verification Admins:</strong> Limited corrections on escalated cases.
+                  </li>
+                  <li>
+                    <strong>Directorate Admins:</strong> Edit award configuration, not hierarchy.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </DocSection>
+        
+          {/* Routing Logic */}
+          <DocSection title="Routing Logic (Pre-Review, Verification & Evaluation)" icon={<ArrowRight />}>
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 text-sm space-y-4">
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500 mb-1">
+                  Pre-Review Routing
+                </p>
+                <p className="text-slate-700 text-xs">
+                  Submissions are routed based on <strong>applicant affiliation</strong>. The system resolves
+                  the applicant&apos;s university and sub-unit, then queues the submission for the correct
+                  institutional pre-reviewers only.
+                </p>
+              </div>
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500 mb-1">
+                  Verification Routing
+                </p>
+                <p className="text-slate-700 text-xs">
+                  Cases flagged during pre-review or evaluation escalate to
+                  <strong>ministry-level verification admins</strong>. They see a focused queue of escalated
+                  items and can perform limited corrections.
+                </p>
+              </div>
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500 mb-1">
+                  Evaluation Routing
+                </p>
+                <p className="text-slate-700 text-xs">
+                  The award&apos;s evaluation model (single committee, per-specialization, multi-level) and
+                  specialization mapping determine which committee receives each submission and which
+                  evaluators are assigned. Evaluators never browse free-form lists; they work from
+                  <strong> curated assignment queues</strong>.
+                </p>
+              </div>
+            </div>
+          </DocSection>
+        </>
+        
         );
       case 'evaluators':
         return (
-            <>
-            <DocSection title="PRD-4: Evaluators & Committees" icon={<Users />}>
-               <p>Defines how submissions are routed to experts. The system supports three routing models:</p>
-               <ol className="list-decimal pl-5 space-y-2 text-sm mt-3">
-                 <li><strong>Single Committee:</strong> One pool of experts for all submissions.</li>
-                 <li><strong>Per-Specialization:</strong> "Engineering" submissions go to the Engineering Committee.</li>
-                 <li><strong>Multi-Level:</strong> University Committee scores first &rarr; Ministry Committee scores second.</li>
-               </ol>
+          <>
+            <DocSection title="PRD-4: Evaluators & Committees Management" icon={<Users />}>
+              <div className="space-y-8">
+                {/* HERO / EXECUTIVE SUMMARY */}
+                <div className="rounded-3xl bg-gradient-to-br from-indigo-600 via-purple-600 to-sky-600 text-white p-6 shadow-2xl shadow-indigo-200/50">
+                  <div className="flex flex-col gap-6">
+                    <div className="flex flex-wrap items-start justify-between gap-4">
+                      {/* Left: title + narrative */}
+                      <div className="space-y-2 max-w-2xl">
+                        <p className="text-[11px] uppercase tracking-[0.4em] text-white/70 flex items-center gap-2">
+                          <span className="flex items-center gap-1">
+                            <Users size={16} />
+                            PRD-4 • Evaluators & Committees
+                          </span>
+                        </p>
+                        <h2 className="text-2xl md:text-3xl font-black tracking-tight">
+                          One Evaluators Engine to Protect Fairness & Scale Decisions
+                        </h2>
+                        <p className="text-sm md:text-base text-indigo-100">
+                          The <strong>Evaluators & Committees Management</strong> module ensures that every
+                          submission is routed to the right committee, scored by the right experts, and
+                          governed by clear rules for conflicts, permissions, and lifecycle. It turns
+                          fragmented evaluation spreadsheets into a single, auditable system of record.
+                        </p>
+                      </div>
+      
+                      {/* Right: small hero stats */}
+                      <div className="flex flex-wrap gap-3 justify-end min-w-[220px]">
+                        <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl px-4 py-3 min-w-[120px]">
+                          <p className="text-[10px] uppercase tracking-[0.3em] text-white/70">
+                            Entities
+                          </p>
+                          <p className="text-2xl font-bold mt-1">3</p>
+                          <p className="text-[11px] text-white/70 mt-1">
+                            Committees, evaluators, roles
+                          </p>
+                        </div>
+                        <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl px-4 py-3 min-w-[120px]">
+                          <p className="text-[10px] uppercase tracking-[0.3em] text-white/70">
+                            Core Guarantees
+                          </p>
+                          <p className="text-sm font-semibold mt-1">No orphan reviews</p>
+                          <p className="text-[11px] text-white/70 mt-1">
+                            Every eligible submission has a home
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+      
+                    {/* Hero chips */}
+                    <div className="flex flex-wrap gap-2 text-[11px]">
+                      <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                        Structured committees & roles
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                        Conflict-of-interest controls
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                        Routing per specialization & stage
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                        Audit-ready evaluation history
+                      </span>
+                    </div>
+                  </div>
+                </div>
+      
+               
+      
+                {/* SCOPE / PROBLEM / KPIs / STAKEHOLDERS */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                      Scope & Vision
+                    </p>
+                    <p className="text-sm text-slate-700 mt-2">
+                      Provide a <strong>single control plane</strong> to create committees, register
+                      evaluators, and define who can score which submissions. The system must support
+                      simple awards (one committee) and complex ones (multi-level, per-specialization
+                      paths) without custom development each time.
+                    </p>
+                  </div>
+      
+                  <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                      Problem Addressed
+                    </p>
+                    <p className="text-sm text-slate-700 mt-2">
+                      Today, committees and evaluators are tracked in Excel or ad-hoc systems. This
+                      leads to <strong>lost submissions, double-evaluation, and unclear accountability</strong>.
+                      PRD-4 replaces this with explicit committee definitions, evaluator assignments,
+                      and routing rules tied to the hierarchy from PRD-3.
+                    </p>
+                  </div>
+      
+                  <div className="bg-slate-50 rounded-2xl border border-slate-200 shadow-sm p-4">
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                      Success Metrics / KPIs
+                    </p>
+                    <ul className="mt-2 text-sm text-slate-700 space-y-1">
+                      <li>⬇ Zero “orphan” submissions without an assigned committee.</li>
+                      <li>⬇ Fewer manual routing fixes and re-assignments.</li>
+                      <li>⬆ Clear trace of who evaluated what and when.</li>
+                      <li>⬆ Ability to support multi-level evaluation without chaos.</li>
+                    </ul>
+                  </div>
+      
+                  <div className="bg-slate-50 rounded-2xl border border-slate-200 shadow-sm p-4">
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                      Stakeholders & Responsibilities
+                    </p>
+                    <ul className="mt-2 text-sm text-slate-700 space-y-1">
+                      <li>
+                        <span className="font-semibold">Ministry owners:</span> define global committee
+                        types, evaluation policies, and conflict-of-interest rules.
+                      </li>
+                      <li>
+                        <span className="font-semibold">Directorate / award admins:</span> instantiate
+                        committees per award, map specializations, and assign evaluators.
+                      </li>
+                      <li>
+                        <span className="font-semibold">Evaluators:</span> receive scoped access to only
+                        the submissions they are allowed to score.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+      
+                {/* CORE MODEL: ENTITIES & RELATIONSHIPS */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                      Core Entities
+                    </p>
+                    <ul className="mt-3 text-sm text-slate-700 space-y-2">
+                      <li>
+                        <strong>Evaluator:</strong> a user with one or more evaluator roles (e.g. member,
+                        chair, observer) tied to awards or specializations.
+                      </li>
+                      <li>
+                        <strong>Committee:</strong> a named group of evaluators created for an award or a
+                        specialization, with a stage (e.g. Stage 1, Final).
+                      </li>
+                      <li>
+                        <strong>Assignment:</strong> mapping between submissions and specific committees
+                        and evaluators (who scores this file).
+                      </li>
+                    </ul>
+                  </div>
+      
+                  <div className="bg-slate-900 rounded-2xl border border-slate-800 text-slate-100 p-5">
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-slate-400">
+                      Hierarchy & Routing
+                    </p>
+                    <ul className="mt-3 text-sm space-y-2">
+                      <li>
+                        Committees can be <strong>global</strong>, <strong>per-award</strong>, or
+                        <strong> per-specialization</strong>, but are always anchored to the hierarchy
+                        (ministry → directorate → institution) from PRD-3.
+                      </li>
+                      <li>
+                        Multi-level awards support flows like{' '}
+                        <code className="font-mono text-xs bg-slate-800 px-2 py-1 rounded">
+                          University → Directorate → Ministry
+                        </code>
+                        .
+                      </li>
+                      <li>
+                        Routing rules decide which committee receives each submission once pre-review is
+                        completed.
+                      </li>
+                    </ul>
+                  </div>
+      
+                  <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                      Governance & Safety
+                    </p>
+                    <ul className="mt-3 text-sm text-slate-700 space-y-2">
+                      <li>Per-award limits on how many submissions each evaluator can handle.</li>
+                      <li>Conflict-of-interest flags (self, supervisor, same department, etc.).</li>
+                      <li>Ability to replace evaluators mid-cycle with clear audit trail.</li>
+                    </ul>
+                  </div>
+                </div>
+      
+                {/* TYPICAL FLOWS AS A VERTICAL TIMELINE */}
+                <div className="space-y-4">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Evaluation & Committees – Core Flows
+                  </p>
+      
+                  <div className="relative pl-6 space-y-4">
+                    {/* vertical line */}
+                    <div className="absolute left-[7px] top-0 bottom-0 w-px bg-slate-200" />
+      
+                    {/* Flow A */}
+                    <div className="relative">
+                      <div className="absolute left-[-1px] top-2 w-3 h-3 rounded-full bg-indigo-500 border border-white shadow" />
+                      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                        <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500">
+                          Flow A – Simple Award (Single Committee)
+                        </p>
+                        <ul className="list-disc pl-5 space-y-1 mt-2 text-sm text-slate-700">
+                          <li>Award admin creates one committee at ministry level.</li>
+                          <li>All eligible submissions after pre-review are routed to this committee.</li>
+                          <li>Each evaluator scores their assigned submissions using PRD-5 scoring UI.</li>
+                          <li>System aggregates scores and publishes results to the award owner.</li>
+                        </ul>
+                      </div>
+                    </div>
+      
+                    {/* Flow B */}
+                    <div className="relative">
+                      <div className="absolute left-[-1px] top-2 w-3 h-3 rounded-full bg-indigo-500 border border-white shadow" />
+                      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                        <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500">
+                          Flow B – Per-Specialization Committees
+                        </p>
+                        <ul className="list-disc pl-5 space-y-1 mt-2 text-sm text-slate-700">
+                          <li>Award is configured with specializations (e.g., Engineering, Medicine).</li>
+                          <li>Each specialization has its own committee and evaluators.</li>
+                          <li>
+                            Submissions are routed based on specialization chosen in the submission engine.
+                          </li>
+                          <li>
+                            Committees see only the submissions mapped to their specialization, ensuring
+                            expertise and fairness.
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+      
+                    {/* Flow C */}
+                    <div className="relative">
+                      <div className="absolute left-[-1px] top-2 w-3 h-3 rounded-full bg-indigo-500 border border-white shadow" />
+                      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                        <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500">
+                          Flow C – Multi-Level Evaluation
+                        </p>
+                        <ul className="list-disc pl-5 space-y-1 mt-2 text-sm text-slate-700">
+                          <li>First-level committee evaluates and shortlists submissions.</li>
+                          <li>
+                            System locks first-level scores, then routes shortlisted files to the next
+                            stage (e.g. national committee).
+                          </li>
+                          <li>Second-level evaluators see previous recommendations but have their own scores.</li>
+                          <li>
+                            Final results combine stage scores according to PRD-1 rules (weights,
+                            aggregation model).
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+                {/* NON-FUNCTIONAL REQUIREMENTS & UX NOTES */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-slate-50 rounded-2xl border border-slate-200 p-5">
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                      Non-Functional Requirements
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2 mt-3 text-sm text-slate-700">
+                      <li>
+                        <strong>Performance:</strong> Filtering and assigning evaluators must remain
+                        responsive even for large national awards.
+                      </li>
+                      <li>
+                        <strong>Reliability:</strong> No loss of assignments when committees change;
+                        re-routing must be tracked and reversible.
+                      </li>
+                      <li>
+                        <strong>Auditability:</strong> Every evaluation action (view, score, change) is
+                        logged with user, time, and context.
+                      </li>
+                    </ul>
+                  </div>
+      
+                  <div className="bg-white rounded-2xl border border-slate-100 p-5 shadow-sm">
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                      UX & Access Principles
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2 mt-3 text-sm text-slate-700">
+                      <li>Evaluator views are minimal: only necessary data to score fairly.</li>
+                      <li>
+                        Committees see aggregate progress (how many submissions scored, pending, etc.).
+                      </li>
+                      <li>
+                        Admins get dashboards to monitor evaluator load, overdue submissions, and routing
+                        health.
+                      </li>
+                      <li>
+                        All screens respect the same <strong>hierarchy, roles, and permissions</strong>{' '}
+                        defined in PRD-3.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </DocSection>
-           </>
+          </>
         );
        case 'scoring':
         return (
-            <>
-            <DocSection title="PRD-5: Scoring Engine" icon={<BarChart3 />}>
-               <p>The mathematical core of UAP. It handles weighted calculations, normalization, and aggregation. It ensures that <strong>Final Scores</strong> are generated only after the evaluation window closes to ensure fairness.</p>
-               <div className="mt-4 p-4 bg-emerald-50 rounded-lg border border-emerald-100 text-sm text-emerald-800">
-                 <strong>Tie-Breaking Rule:</strong> The system identifies ties but <em>never</em> breaks them automatically. An admin must manually select the winner to ensure human oversight.
-               </div>
-            </DocSection>
-           </>
+          <>
+          {/* PRD-5: Scoring Engine & Results Generation */}
+          <DocSection
+            title="PRD-5: Scoring Engine & Results Generation"
+            icon={<BarChart3 />}
+          >
+            <div className="space-y-8">
+              {/* HERO / EXECUTIVE SUMMARY */}
+              <div className="rounded-3xl bg-gradient-to-br from-indigo-600 via-purple-600 to-sky-600 text-white p-6 shadow-2xl shadow-indigo-200/50">
+                <div className="flex flex-col gap-6">
+                  <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div className="space-y-2 max-w-2xl">
+                      <p className="text-[11px] uppercase tracking-[0.4em] text-white/70 flex items-center gap-2">
+                        <span className="flex items-center gap-1">
+                          <BarChart3 size={16} />
+                          PRD-5 • Scoring Engine
+                        </span>
+                      </p>
+                      <h2 className="text-2xl md:text-3xl font-black tracking-tight">
+                        Turning Evaluator Inputs into Fair, Auditable Results
+                      </h2>
+                      <p className="text-sm md:text-base text-indigo-100">
+                        The <strong>Scoring Engine &amp; Results Generation</strong> module
+                        takes evaluator scores, applies configured rules, and produces
+                        consistent, explainable rankings for every award cycle.
+                      </p>
+                    </div>
+        
+                    <div className="flex flex-wrap gap-3 justify-end min-w-[220px]">
+                      <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl px-4 py-3 min-w-[120px]">
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-white/70">
+                          Core Responsibility
+                        </p>
+                        <p className="text-sm font-semibold mt-1">
+                          Scoring &amp; Ranking
+                        </p>
+                        <p className="text-[11px] text-white/70 mt-1">
+                          From raw inputs → final results
+                        </p>
+                      </div>
+        
+                      <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl px-4 py-3 min-w-[120px]">
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-white/70">
+                          Success Signals
+                        </p>
+                        <p className="text-sm font-semibold mt-1">
+                          100% accurate weights
+                        </p>
+                        <p className="text-[11px] text-white/70 mt-1">
+                          Zero unresolved inconsistencies
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div className="flex flex-wrap gap-2 text-[11px]">
+                    <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                      Unified scoring rules
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                      Multi-stage evaluation support
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                      Deterministic ranking &amp; ties
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+                      Fully auditable lifecycle
+                    </span>
+                  </div>
+                </div>
+              </div>
+        
+              {/* SCOPE / PROBLEM / STAKEHOLDERS / KPIs */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Scope &amp; Vision
+                  </p>
+                  <p className="text-sm text-slate-700 mt-2">
+                    Provide a single <strong>platform-wide scoring engine</strong> that
+                    executes award configuration rules, aggregates evaluator scores,
+                    and generates transparent final results across all awards and
+                    cycles.
+                  </p>
+                  <ul className="mt-3 text-xs text-slate-600 space-y-1">
+                    <li>• Criterion-level scoring &amp; validation.</li>
+                    <li>• Evaluator &amp; stage-level aggregation.</li>
+                    <li>• Final scoring, ranking, and tie handling.</li>
+                    <li>• Versioned, auditable result sets.</li>
+                  </ul>
+                </div>
+        
+                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Problem Addressed
+                  </p>
+                  <p className="text-sm text-slate-700 mt-2">
+                    Without a standard engine, multi-stage evaluations risk{' '}
+                    <strong>inconsistent aggregation, manual reconciliation, and
+                    non-auditable decisions</strong>. This PRD enforces strict,
+                    centralized scoring logic and result generation.
+                  </p>
+                </div>
+        
+                <div className="bg-slate-50 rounded-2xl border border-slate-200 shadow-sm p-4">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Success Metrics / KPIs
+                  </p>
+                  <ul className="mt-2 text-sm text-slate-700 space-y-1">
+                    <li>⬇ 80% reduction in manual scoring reconciliation.</li>
+                    <li>⬆ 100% rules-consistent score aggregation per award.</li>
+                    <li>⬆ 100% of scores &amp; result sets fully auditable.</li>
+                    <li>⬇ Zero unresolved scoring inconsistencies.</li>
+                  </ul>
+                </div>
+        
+                <div className="bg-slate-50 rounded-2xl border border-slate-200 shadow-sm p-4">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Stakeholders &amp; Responsibilities
+                  </p>
+                  <ul className="mt-2 text-sm text-slate-700 space-y-1">
+                    <li>
+                      <span className="font-semibold">Ministry Super Admin:</span>{' '}
+                      approves final results, owns scoring policies.
+                    </li>
+                    <li>
+                      <span className="font-semibold">Directorate Admin:</span>{' '}
+                      triggers aggregation &amp; ranking for awards they own.
+                    </li>
+                    <li>
+                      <span className="font-semibold">Committee Manager:</span>{' '}
+                      monitors scoring completeness and stage readiness.
+                    </li>
+                    <li>
+                      <span className="font-semibold">Evaluators:</span> submit
+                      criterion-level scores only; no aggregation rights.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+        
+              {/* PERSONAS & ENGINE OVERVIEW */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Personas &amp; Key Journeys
+                  </p>
+                  <ul className="list-disc pl-5 space-y-2 mt-3 text-sm text-slate-700">
+                    <li>
+                      <strong>Evaluator:</strong> scores assigned criteria for a
+                      submission, then submits inputs for aggregation.
+                    </li>
+                    <li>
+                      <strong>Committee Manager:</strong> tracks completion and marks
+                      stages as ready for scoring engine execution.
+                    </li>
+                    <li>
+                      <strong>Directorate Admin:</strong> triggers aggregation,
+                      validates outputs, and generates ranked results.
+                    </li>
+                    <li>
+                      <strong>Ministry Super Admin:</strong> reviews and approves
+                      final result sets for publication.
+                    </li>
+                  </ul>
+                </div>
+        
+                <div className="bg-slate-900 rounded-2xl border border-slate-800 text-slate-100 p-5">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-400">
+                    Engine Overview
+                  </p>
+                  <ul className="mt-3 text-sm space-y-2">
+                    <li>
+                      <span className="font-semibold">Input:</span> validated
+                      criterion-level scores from evaluators, per stage.
+                    </li>
+                    <li>
+                      <span className="font-semibold">Processing:</span> apply scoring
+                      models, aggregate per criterion, then per stage, then per
+                      applicant.
+                    </li>
+                    <li>
+                      <span className="font-semibold">Output:</span> final scores,
+                      ranked lists, and versioned result sets ready for ministry
+                      approval and publication.
+                    </li>
+                    <li>
+                      <span className="font-semibold">Guardrails:</span> evaluation
+                      must be closed; incomplete or invalid submissions are
+                      automatically blocked from ranking.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+        
+              {/* SCORING LIFECYCLE TIMELINE */}
+              <div className="space-y-4">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                  Scoring &amp; Results Lifecycle
+                </p>
+        
+                <div className="relative pl-6 space-y-4">
+                  {/* Vertical line */}
+                  <div className="absolute left-[7px] top-0 bottom-0 w-px bg-slate-200" />
+        
+                  {/* STEP A – Evaluator Scoring */}
+                  <div className="relative">
+                    <div className="absolute left-[-1px] top-2 w-3 h-3 rounded-full bg-indigo-500 border border-white shadow" />
+                    <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                      <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500">
+                        Phase A – Evaluator Scoring
+                      </p>
+                      <ul className="list-disc pl-5 space-y-1 mt-2 text-sm text-slate-700">
+                        <li>
+                          Evaluators score each required criterion using configured
+                          scoring models (numeric, binary, mapped, ranking, file, text,
+                          normalization).
+                        </li>
+                        <li>
+                          Strong validation: required fields, min/max, valid options,
+                          mandatory files.
+                        </li>
+                        <li>
+                          All scoring must occur before the evaluation end-date; late
+                          submissions are blocked and logged.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+        
+                  {/* STEP B – Criterion & Evaluator Aggregation */}
+                  <div className="relative">
+                    <div className="absolute left-[-1px] top-2 w-3 h-3 rounded-full bg-indigo-500 border border-white shadow" />
+                    <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                      <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500">
+                        Phase B – Criterion Finalization &amp; Evaluator Aggregation
+                      </p>
+                      <ul className="list-disc pl-5 space-y-1 mt-2 text-sm text-slate-700">
+                        <li>
+                          For each criterion, the engine produces one authoritative
+                          numeric score.
+                        </li>
+                        <li>
+                          Final-stage evaluator’s score is the source of truth;
+                          earlier-stage inputs are visible but not used in calculations.
+                        </li>
+                        <li>
+                          Incomplete criteria prevent stage completion and result
+                          generation.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+        
+                  {/* STEP C – Stage & Final Scores */}
+                  <div className="relative">
+                    <div className="absolute left-[-1px] top-2 w-3 h-3 rounded-full bg-indigo-500 border border-white shadow" />
+                    <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                      <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500">
+                        Phase C – Stage-Level &amp; Final Score Calculation
+                      </p>
+                      <ul className="list-disc pl-5 space-y-1 mt-2 text-sm text-slate-700">
+                        <li>
+                          Stage score = sum of all final criterion scores for that
+                          stage.
+                        </li>
+                        <li>
+                          Multi-stage awards: Stage 1 must be fully complete before
+                          Stage 2; Stage 2 overrides Stage 1 as the final score source.
+                        </li>
+                        <li>
+                          Final Score per applicant is a single numeric value used for
+                          ranking and tie-handling.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+        
+                  {/* STEP D – Ranking & Tie Handling */}
+                  <div className="relative">
+                    <div className="absolute left-[-1px] top-2 w-3 h-3 rounded-full bg-indigo-500 border border-white shadow" />
+                    <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                      <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500">
+                        Phase D – Ranking, Ties &amp; Result Sets
+                      </p>
+                      <ul className="list-disc pl-5 space-y-1 mt-2 text-sm text-slate-700">
+                        <li>
+                          Engine ranks applicants in descending order of Final Score.
+                        </li>
+                        <li>
+                          For exact ties, the system <strong>never auto-selects</strong>{' '}
+                          a winner; it notifies the authorized admin to manually decide
+                          and log a reason.
+                        </li>
+                        <li>
+                          Ranked list is stored as a versioned, auditable result set
+                          with timestamp and triggering admin.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+        
+                  {/* STEP E – Appeals & Recalculation */}
+                  <div className="relative">
+                    <div className="absolute left-[-1px] top-2 w-3 h-3 rounded-full bg-indigo-500 border border-white shadow" />
+                    <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                      <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500">
+                        Phase E – Appeals, Re-Scoring &amp; Re-Ranking
+                      </p>
+                      <ul className="list-disc pl-5 space-y-1 mt-2 text-sm text-slate-700">
+                        <li>
+                          Appeals update only the affected applicant’s scores; engine
+                          recalculates their Final Score and regenerates ranking.
+                        </li>
+                        <li>
+                          Each recalculation produces a new result-set version; previous
+                          versions remain archived for audit.
+                        </li>
+                        <li>
+                          If appeals create new ties, the same manual tie-resolution
+                          process is enforced.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              {/* NON-FUNCTIONAL & EDGE CASES */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-slate-50 rounded-2xl border border-slate-200 p-5">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Non-Functional Requirements
+                  </p>
+                  <ul className="list-disc pl-5 space-y-2 mt-3 text-sm text-slate-700">
+                    <li>
+                      <strong>Determinism:</strong> same inputs and configuration always
+                      yield the same scores and rankings.
+                    </li>
+                    <li>
+                      <strong>Auditability:</strong> all scoring actions, overrides,
+                      appeals, and tie resolutions are fully logged.
+                    </li>
+                    <li>
+                      <strong>Performance:</strong> can aggregate scores and generate
+                      rankings for large batches without timeouts.
+                    </li>
+                    <li>
+                      <strong>Safety:</strong> scoring cannot run before evaluation
+                      end-date; incomplete submissions never enter ranking.
+                    </li>
+                  </ul>
+                </div>
+        
+                <div className="bg-white rounded-2xl border border-slate-100 p-5 shadow-sm">
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                    Error Handling &amp; Edge Cases
+                  </p>
+                  <ul className="list-disc pl-5 space-y-2 mt-3 text-sm text-slate-700">
+                    <li>
+                      Late evaluator submissions are blocked and logged; they never
+                      alter finalized scores.
+                    </li>
+                    <li>
+                      Missing or invalid scores flag the submission as incomplete and
+                      block ranking until resolved.
+                    </li>
+                    <li>
+                      Stage sequencing is enforced; Stage 2 cannot start if Stage 1 is
+                      incomplete.
+                    </li>
+                    <li>
+                      Critical calculation errors (e.g., division by zero) halt the
+                      scoring run, log diagnostics, and notify system admins.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </DocSection>
+        </>
+        
         );
       case 'appeals':
         return (
-            <>
-            <DocSection title="PRD-6: Appeals & Audit" icon={<Gavel />}>
-               <p>A dedicated workflow for handling disputes. If an applicant challenges a score:</p>
-               <ul className="list-disc pl-5 space-y-2 text-sm mt-3">
-                 <li>Admin reviews the claim.</li>
-                 <li>If approved, scores are corrected.</li>
-                 <li><strong>Re-Scoring:</strong> The engine automatically recalculates rankings.</li>
-                 <li><strong>Audit Trail:</strong> Every change (old value vs new value) is immutably logged.</li>
-               </ul>
-            </DocSection>
-           </>
+          <>
+  {/* PRD-6: Appeals, Corrections & Audit Trail */}
+  <DocSection
+    title="PRD-6: Appeals, Corrections & Audit Trail"
+    icon={<AlertCircle />}
+  >
+    <div className="space-y-6">
+      {/* Hero / Overview */}
+      <div className="rounded-3xl bg-gradient-to-br from-rose-600 via-orange-500 to-amber-500 text-white p-6 shadow-2xl shadow-rose-200/50">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="space-y-2 max-w-2xl">
+              <p className="text-[11px] uppercase tracking-[0.4em] text-white/80 flex items-center gap-2">
+                <span className="flex items-center gap-1">
+                  <AlertCircle size={16} />
+                  PRD-6 • Appeals & Audit
+                </span>
+              </p>
+              <h2 className="text-2xl md:text-3xl font-black tracking-tight">
+                Fair Appeals, Safe Corrections, Full Traceability
+              </h2>
+              <p className="text-sm md:text-base text-amber-50">
+                PRD-6 defines how applicants challenge results, how admins correct scores,
+                and how the system keeps an immutable audit trail. It activates after
+                results are generated and ensures that every appeal, correction, and
+                re-scoring step is transparent and compliant.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3 justify-end min-w-[220px]">
+              <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl px-4 py-3 min-w-[130px]">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-white/80">
+                  Scope
+                </p>
+                <p className="text-sm font-semibold mt-1">
+                  Appeals & Corrections
+                </p>
+                <p className="text-[11px] text-white/75 mt-1">
+                  After scoring & ranking
+                </p>
+              </div>
+              <div className="bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl px-4 py-3 min-w-[130px]">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-white/80">
+                  Guarantees
+                </p>
+                <p className="text-sm font-semibold mt-1">
+                  Fairness & Auditability
+                </p>
+                <p className="text-[11px] text-white/75 mt-1">
+                  Every change is logged
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2 text-[11px]">
+            <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+              Applicant appeal workflow
+            </span>
+            <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+              Score corrections & versioning
+            </span>
+            <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+              Re-scoring & ranking updates
+            </span>
+            <span className="px-3 py-1 rounded-full bg-white/15 border border-white/25">
+              Appeal-specific audit trail
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Stakeholders & Journeys */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+            Stakeholders
+          </p>
+          <ul className="mt-2 text-sm text-slate-700 space-y-2">
+            <li>
+              <span className="font-semibold">Applicant:</span> submits appeals with
+              justification and evidence; needs clarity and transparency on outcomes.
+            </li>
+            <li>
+              <span className="font-semibold">Directorate Admin:</span> reviews appeals,
+              adjusts scores when needed, and ensures compliance with ministry rules.
+            </li>
+            <li>
+              <span className="font-semibold">Ministry Super Admin:</span> defines appeal
+              policies, oversees complex or escalated cases, and can export audit data.
+            </li>
+            <li>
+              <span className="font-semibold">Committee Manager:</span> provides context
+              or clarifications on evaluations when requested by admins.
+            </li>
+          </ul>
+        </div>
+
+        <div className="bg-slate-50 rounded-2xl border border-slate-200 shadow-sm p-4">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+            Core User Journeys
+          </p>
+          <ul className="mt-2 text-sm text-slate-700 space-y-1 list-disc pl-5">
+            <li>
+              <strong>Journey A – Appeal Submission:</strong> applicant reviews results,
+              submits an appeal with a reason, justification text, and optional evidence.
+            </li>
+            <li>
+              <strong>Journey B – Review & Decision:</strong> admin assesses the appeal,
+              optionally requests clarifications, and records an approve / partial / reject
+              decision.
+            </li>
+            <li>
+              <strong>Journey C – Correction & Re-Scoring:</strong> admin fixes affected
+              scores; the system versions the result and triggers re-scoring & ranking.
+            </li>
+            <li>
+              <strong>Journey D – Audit & Traceability:</strong> authorized users inspect
+              the full history of decisions, corrections, and post-appeal scoring changes.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </DocSection>
+
+  {/* Key Capabilities */}
+  <DocSection title="Key Capabilities" icon={<CheckCircle />}>
+    <ul className="space-y-3 text-sm">
+      <li className="flex gap-2">
+        <div className="mt-1">
+          <ArrowRight size={14} className="text-rose-500" />
+        </div>
+        <span>
+          <strong>Appeal Submission Guardrails:</strong> appeals are only allowed when the
+          applicant has a final score, the appeal window is open, and the reason matches an
+          allowed category (e.g., missing score, mis-evaluation, incorrect data). Required
+          fields include reason, justification, and optional evidence, plus an applicant
+          declaration checkbox.
+        </span>
+      </li>
+
+      <li className="flex gap-2">
+        <div className="mt-1">
+          <ArrowRight size={14} className="text-rose-500" />
+        </div>
+        <span>
+          <strong>Structured Review & Decisions:</strong> admins work from a dedicated
+          appeal details page, can ask evaluators/committees for clarifications, and
+          decide whether to approve, partially approve, or reject the appeal. All decisions
+          are logged and applicants are notified.
+        </span>
+      </li>
+
+      <li className="flex gap-2">
+        <div className="mt-1">
+          <ArrowRight size={14} className="text-rose-500" />
+        </div>
+        <span>
+          <strong>Safe Score Corrections:</strong> only authorized roles can edit criterion
+          or stage scores. Every correction must include justification text and
+          automatically creates a new version that stores old value, new value, admin id,
+          timestamp, and linked Appeal ID.
+        </span>
+      </li>
+
+      <li className="flex gap-2">
+        <div className="mt-1">
+          <ArrowRight size={14} className="text-rose-500" />
+        </div>
+        <span>
+          <strong>Post-Appeal Re-Scoring & Ranking:</strong> whenever a correction changes
+          stage or final scores—or applicants are added/removed—the system recalculates
+          scores, regenerates rankings, and highlights changed positions. Tie cases trigger
+          a manual resolution step that is also logged.
+        </span>
+      </li>
+
+      <li className="flex gap-2">
+        <div className="mt-1">
+          <ArrowRight size={14} className="text-rose-500" />
+        </div>
+        <span>
+          <strong>Appeal Lifecycle & Closure:</strong> an appeal is closed only after a
+          decision is issued, all corrections are applied, re-scoring is complete, and the
+          new ranking is in place. Closure records the final decision, score version, and
+          responsible admin.
+        </span>
+      </li>
+
+      <li className="flex gap-2">
+        <div className="mt-1">
+          <ArrowRight size={14} className="text-rose-500" />
+        </div>
+        <span>
+          <strong>Appeal-Specific Audit Trail:</strong> the platform logs every key event
+          (submission, decision, correction, re-scoring, ranking regeneration, tie
+          resolution, closure) with event type, submission id, appeal id, old/new values,
+          admin id, timestamp, and notes. Applicants can see their own appeal history;
+          ministry super admins can access and export full logs.
+        </span>
+      </li>
+    </ul>
+  </DocSection>
+
+  {/* Visual Lifecycle Summary */}
+  <DocSection
+    title="Appeal Lifecycle at a Glance"
+    icon={<FileText />}
+  >
+    <div className="bg-slate-900 rounded-2xl border border-slate-800 text-slate-100 p-5">
+      <p className="text-[11px] uppercase tracking-[0.3em] text-slate-400">
+        End-to-End Workflow
+      </p>
+      <p className="mt-2 text-sm text-slate-200">
+        The appeal process runs as a controlled, linear lifecycle:
+      </p>
+      <ol className="mt-3 text-sm space-y-2 list-decimal pl-5 text-slate-200">
+        <li>Applicant submits an appeal with justification and evidence.</li>
+        <li>System validates eligibility (period, status, reason) and logs an Appeal ID.</li>
+        <li>Admin reviews the case and records a decision (approve / partial / reject).</li>
+        <li>For approved cases, scores are corrected and versioned.</li>
+        <li>System re-scores, regenerates rankings, and flags any new ties.</li>
+        <li>Admins resolve tie cases when needed; decisions are logged.</li>
+        <li>Appeal is closed and the full trail remains available for audits.</li>
+      </ol>
+    </div>
+  </DocSection>
+</>
+
         );
       default: return null;
     }
